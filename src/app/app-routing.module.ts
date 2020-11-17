@@ -6,6 +6,7 @@ import {PlayComponent} from './play/play.component';
 import {RecordsComponent} from './records/records.component';
 import {LoginComponent} from './login/login.component';
 import {SigninComponent} from './signin/signin.component';
+import {PagenotfoundComponent} from './pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
   { path: 'start', component: StartComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'records', component: RecordsComponent},
   { path: 'login', component: LoginComponent},
   { path: 'signin', component: SigninComponent},
-  { path: '', redirectTo: 'start', pathMatch: 'full' },
+  { path: '**', component: PagenotfoundComponent},
+  { path: '', redirectTo: 'start', pathMatch: 'full' }
 ];
 
 @NgModule({

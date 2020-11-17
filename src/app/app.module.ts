@@ -9,6 +9,7 @@ import { PlayComponent } from './play/play.component';
 import { RecordsComponent } from './records/records.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SigninComponent } from './signin/signin.component';
     RecordsComponent,
     LoginComponent,
     SigninComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
