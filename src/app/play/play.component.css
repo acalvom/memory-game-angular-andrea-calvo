@@ -1,0 +1,24 @@
+#matchedCards,
+#remainingTime,
+#current_score {
+  font: small-caps lighter 20px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  background-color: rgb(240, 241, 168);
+  text-align: center;
+  border: transparent;
+}
+
+.mainColumn {
+  width: auto;
+  font: small-caps lighter 18px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  border: 2px solid rgb(103, 219, 235);
+}
+
+.column {
+  font: small-caps lighter 18px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  background-color: rgb(240, 241, 168);
+  padding: 14px;
+}
