@@ -1,4 +1,33 @@
-<div>
-  <p> {{title}}</p>
-  <app-registro></app-registro>
-</div>
+<header>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a href="#" class="navbar-brand">
+          <img src="assets/cards.png" id='gameLogo' height="30" alt="Memory Game">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a routerLink="start" routerLinkActive="active"><span class="glyphicon glyphicon-home"></span> Start</a></li>
+          <li><a routerLink="preferences" routerLinkActive="active"><span class="glyphicon glyphicon-cog"></span> Preferences</a></li>
+          <li><a routerLink="play" routerLinkActive="active"><span class="glyphicon glyphicon-play"></span> Play</a></li>
+          <li><a routerLink="records" routerLinkActive="active"><span class="glyphicon glyphicon-stats"></span> Records</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink="login" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+          <li><a routerLink="signin" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<section class="container" id="contenedor">
+  <router-outlet></router-outlet>
+</section>
