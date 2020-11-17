@@ -1,3 +1,29 @@
+div#board {
+  background-color: rgb(240, 241, 168);
+  border: 2px solid rgb(103, 219, 235);
+  width: 80%;
+  height: 80vh;
+  padding: 24px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+div#board > div {
+  background-image: url("../../assets/naipes/fondo_espacio.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 79px;
+  height: 140px;
+  border: 2px solid rgb(103, 219, 235);
+  float: left;
+  padding: 10px;
+  margin: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  text-align: center;
+}
+
 #matchedCards,
 #remainingTime,
 #current_score {
@@ -22,3 +48,5 @@
   background-color: rgb(240, 241, 168);
   padding: 14px;
 }
+
+
