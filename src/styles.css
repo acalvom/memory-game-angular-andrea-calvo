@@ -1,14 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: rgb(10, 34, 34);
+}
+
 fieldset {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  color: olivedrab;
+  font: small-caps lighter 14px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  color: rgb(240, 241, 168);
   padding-bottom: 10px;
   width: 60%;
   margin: auto;
 }
+
 .form-control {
   text-align: center;
   width: auto;
   display: inline;
   background-color: cornsilk;
 }
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: center;
+  width: auto;
+}
+
+legend {
+  font-size: 16pt;
+  color: rgb(229, 233, 5);
+  padding: 10px 10px;
+}
+

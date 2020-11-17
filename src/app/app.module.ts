@@ -10,6 +10,7 @@ import { RecordsComponent } from './records/records.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

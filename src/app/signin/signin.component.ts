@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from './user.model';
 
 @Component({
   selector: 'app-signin',
@@ -7,7 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
 
-  constructor() { }
+  newEmail = '';
+  newUsername = '';
+  repeatPassword = '';
+  newPassword = '';
+  errorMsg = false;
+  userList: User[] = [];
+
+  constructor() {
+  }
+
+  addUser(): void {
+    if (this.newPassword !== this.repeatPassword) {
+      this.errorMsg = true;
+    } else {
+      this.errorMsg = false;
+      const newUser: User = new User(this.newUsername, this.newEmail, this.newPassword);
+      this.userList.push(newUser);
+    }
+    this.newPassword = '';
+    this.repeatPassword = '';
+    console.log(this.userList);
+  }
 
   ngOnInit(): void {
   }
