@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-start',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  constructor() { }
+  updateClock(): void {
+
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    // onload
+    // setInterval(this.updateClock, 1000);
   }
 
 }

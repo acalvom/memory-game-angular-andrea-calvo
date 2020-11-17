@@ -31,3 +31,9 @@ legend {
   padding: 10px 10px;
 }
 
+.btn-primary {
+  color: #2e4457;
+  background-color: rgb(103, 219, 235);
+  border-color: rgb(103, 219, 235);
+}
+

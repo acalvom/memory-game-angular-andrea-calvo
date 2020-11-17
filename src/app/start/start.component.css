@@ -1,0 +1,59 @@
+#timedate {
+  font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  text-align: left;
+  margin: 20px;
+}
+
+#timedate a {
+  color: rgb(229, 233, 5);
+}
+
+.external-author {
+  font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 8pt;
+  color: rgb(103, 219, 235);
+}
+#author{
+  font-size: 14pt;
+  color: rgb(103, 219, 235);
+}
+
+#start {
+  height: auto;
+  float: left;
+  align-self: end;
+}
+
+#start > p {
+  margin: 50px 0;
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: default;
+  color: #2e4457;
+  font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 7em;
+  animation: neon 2s ease-in-out infinite alternate;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+@keyframes neon {
+  from {
+    color: #ffffff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+    0 0 40px rgb(229, 233, 5), 0 0 70px rgb(229, 233, 5),
+    0 0 80px rgb(229, 233, 5), 0 0 100px rgb(229, 233, 5),
+    0 0 150px rgb(229, 233, 5);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff,
+    0 0 20px rgb(229, 233, 5), 0 0 35px rgb(229, 233, 5),
+    0 0 40px rgb(229, 233, 5), 0 0 50px rgb(229, 233, 5),
+    0 0 75px rgb(229, 233, 5);
+  }
+}
