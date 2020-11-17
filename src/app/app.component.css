@@ -1,0 +1,18 @@
+.navbar-inverse {
+  background-color: rgb(229, 233, 5);
+  border-color: transparent;
+  font: small-caps lighter 14px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #2e4457;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: transparent;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #2e4457;
+}
