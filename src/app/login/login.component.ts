@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
   errorMsg = false;
+  passwordVisible = false;
 
   constructor() {
   }
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   loginUser(): void {
     console.log(this.username);
     console.log(this.password);
+  }
 
+  showPassword(): void {
+    this.passwordVisible = !this.passwordVisible;
   }
 
   ngOnInit(): void {

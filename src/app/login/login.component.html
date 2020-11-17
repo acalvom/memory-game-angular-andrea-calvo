@@ -12,7 +12,7 @@
 
       <div class="form-group row">
         <label for="password" class="col-md-2 col-md-offset-2 col-form-label">Password: </label>
-        <input type="password" class="col-md-2 form-control" id="password"
+        <input [type]="passwordVisible ? 'text' : 'password'" class="col-md-2 form-control" id="password"
                [(ngModel)]="password" name="password"
                required placeholder="Password">
 
@@ -22,7 +22,15 @@
       <ng-container *ngIf="errorMsg">
         Incorrect password.
       </ng-container>
-      <br>
+
+      <div class="form-group row">
+        <div class="col-md-10 offset-md-2">
+          <input type="checkbox" id="showPassword"
+                 [(ngModel)]="passwordVisible" name="showPassword" (click)='showPassword()'>
+          Show Password
+        </div>
+      </div>
+
       <div class="form-group row">
         <div class="col-md-10 offset-md-2">
           <button id='btn_login' type="button" class="btn btn-primary"
