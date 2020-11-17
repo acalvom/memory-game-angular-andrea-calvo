@@ -9,12 +9,7 @@
   color: rgb(229, 233, 5);
 }
 
-.external-author {
-  font: small-caps lighter 43px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
-  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 8pt;
-  color: rgb(103, 219, 235);
-}
+
 #author{
   font-size: 14pt;
   color: rgb(103, 219, 235);
