@@ -27,9 +27,14 @@ export class PlayComponent implements OnInit {
       this.timeLimit = 0;
     } else {
       const preferencesArray = preferences.split(',').map(Number); // Para obtener el array de preferencias
-      this.numberOfCards = preferencesArray[0];
-      this.timeLimit = preferencesArray[1];
-      console.log(preferencesArray);
+      if (preferencesArray[0] === 0 && preferencesArray[1] === 0){
+        this.numberOfCards = 20;
+        this.timeLimit = 0;
+      }else {
+        this.numberOfCards = preferencesArray[0];
+        this.timeLimit = preferencesArray[1];
+      }
+      console.log(this.numberOfCards, this.timeLimit);
     }
     this.currentTime = this.timeLimit;
   }
