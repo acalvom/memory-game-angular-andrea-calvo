@@ -9,21 +9,22 @@ import {PreferencesmanagerService} from '../shared/services/preferencesmanager.s
 export class PlayComponent implements OnInit {
 
   values: number[] = [];
-  cartasSeleccionadas: number[] = [];
-  cartasSeleccionadasIds: number[] = [];
-  cartasVoletadas = 0;
+  selectedCards: number[] = [];
+  selectedCardsIds: number[] = [];
+  flippedCards = 0;
+  cards: string [] = [];
 
   numberOfCards = 0;
   timeLimit = 0;
-  score = 0;
+  currentScore = 0;
   countdown = 0;
-  currentTime = 0;
+  remainingTime = 0;
   loadedPreferences: string | null= '';
+  output = '';
 
   constructor(private preferences: PreferencesmanagerService) { }
 
   readPreferences(): void {
-    //const preferences = sessionStorage.getItem('preferences');
     this.loadedPreferences = this.preferences.getPreferences();
     if (this.loadedPreferences == null){
       this.numberOfCards = 20;
@@ -39,7 +40,7 @@ export class PlayComponent implements OnInit {
       }
       console.log(this.numberOfCards, this.timeLimit);
     }
-    this.currentTime = this.timeLimit;
+    this.remainingTime = this.timeLimit;
     this.positionVector();
   }
 
@@ -50,6 +51,7 @@ export class PlayComponent implements OnInit {
     while (end !== this.numberOfCards) {
       for (let i = 0; i <= (this.numberOfCards - 1); i++) {
         randomNumber = Math.round(Math.random() * (this.numberOfCards - 1));
+        //this.cards[i] = 'card_' + i + '.jpg)';
         if (this.values.indexOf(randomNumber) === -1) {
           this.values.push(randomNumber);
           end++;
@@ -68,8 +70,41 @@ export class PlayComponent implements OnInit {
     console.log(this.values);
   }
 
-  ngOnInit(): void {
+  restartGame(): void {
+
+  }
+
+  timer(): void {
+    this.countdown = setInterval( () => {
+      if (this.remainingTime <= 0) {
+        clearInterval(this.countdown);
+        this.currentScore = 0;
+        alert("YOU LOOSE!");
+      }
+      this.remainingTime -= 1;
+    }, 1000);
+  }
+
+  newGame(): void {
     this.readPreferences();
+    this.currentScore = 0;
+    this.flippedCards = 0;
+    if (this.timeLimit != 0) {
+      this.timer();
+    }else{
+      this.remainingTime = Number('No time');
+    }
+    this.positionVector();
+
+    for (let i = 0; i < this.numberOfCards; i++) {
+      this.cards[i] = 'card_' + i + '.jpg)';
+      //this.output = this.output + '<div id="carta_' + i + '" (click)="flipCards(this,\'' + this.values[i] + '\')"></div>';
+    }
+    console.log(this.cards,this.values);
+  }
+
+  ngOnInit(): void {
+    this.newGame();
   }
 
 }

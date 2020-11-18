@@ -4,19 +4,20 @@
 
       <div id='cards' class="row">
         <div class="col-md-12 column"><strong>Matched Cards</strong> <br/>
-          <input type='text' id='matchedCards' name='matchedCards' size="6" readonly>
+          <input type='text' id='flippedCards' [(ngModel)]="flippedCards"
+                 name='flippedCards' size="6" readonly>
         </div>
       </div>
 
       <div id='time' class="row">
         <div class="col-md-12 column"><strong>Remaining Time</strong> <br/>
-          <input type='text' id='remainingTime' name='remainingTime' size="6" readonly>
+          <input type='text' id='remainingTime' [(ngModel)]="remainingTime" name='remainingTime' size="6" readonly>
         </div>
       </div>
 
       <div id='score' class="row">
         <div class="col-md-12 column"><strong>Current Score</strong> <br>
-          <input type='text' id='current_score' name='current_score' size="6" readonly>
+          <input type='text' id='currentScore' [(ngModel)]="currentScore" name='currentScore' size="6" readonly>
         </div>
       </div>
 
@@ -36,5 +37,10 @@
 
 
 
-  <div id='board' class="col-md-7 col-md-offset-2"></div>
+  <div id='board' class="col-md-7 col-md-offset-2">
+    <ng-component *ngFor="let card of cards"></ng-component>
+<!--    <ng-container *ngFor="let out of output">-->
+<!--     {{output}}-->
+<!--    </ng-container>-->
+  </div>
 </div>
