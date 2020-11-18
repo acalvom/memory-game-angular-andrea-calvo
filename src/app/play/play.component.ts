@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PreferencesmanagerService} from '../shared/services/preferencesmanager.service';
+import {UsersrestService} from '../shared/services/usersrest.service';
 
 @Component({
   selector: 'app-play',
@@ -20,9 +21,9 @@ export class PlayComponent implements OnInit {
   countdown: any;
   remainingTime = 0;
   loadedPreferences: string | null= '';
-  output = '';
+  loadedUserToken: string | null= '';
 
-  constructor(private preferences: PreferencesmanagerService) { }
+  constructor(private preferences: PreferencesmanagerService, private usersrestService: UsersrestService) { }
 
   readPreferences(): void {
     this.loadedPreferences = this.preferences.getPreferences();
@@ -63,11 +64,14 @@ export class PlayComponent implements OnInit {
       randomNumber = this.values[i];
       if (randomNumber > ((this.numberOfCards / 2)) - 1) {
         this.values[i] = randomNumber - (this.numberOfCards / 2);
+        this.cards[i] = 'assets/naipes/img_' + this.values[i] + '.jpg';
       } else {
         this.values[i] = randomNumber;
+        this.cards[i] = 'assets/naipes/img_' + this.values[i] + '.jpg';
       }
     }
-    console.log(this.values);
+    console.log(this.values, this.cards);
+
   }
 
   restartGame(): void {
@@ -93,16 +97,20 @@ export class PlayComponent implements OnInit {
       this.timer();
     }
     this.positionVector();
-
-    for (let i = 0; i < this.numberOfCards; i++) {
-      this.cards[i] = 'card_' + i + '.jpg)';
-      //this.output = this.output + '<div id="carta_' + i + '" (click)="flipCards(this,\'' + this.values[i] + '\')"></div>';
-    }
-    console.log(this.cards,this.values);
   }
 
   ngOnInit(): void {
     this.newGame();
   }
 
+  flipCard(): void {
+
+  }
+
+  saveScore() {
+    this.loadedUserToken = this.usersrestService.getUserToken();
+    console.log(this.loadedUserToken);
+
+
+  }
 }

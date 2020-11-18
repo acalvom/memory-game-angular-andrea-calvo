@@ -27,7 +27,7 @@
 
       <div class="col-md-10 offset-md-2">
         <button id='btn_start' type='button' value="Start Game" class="btn btn-primary"
-                (click)='readPreferences()'>Start Game</button>
+                (click)='saveScore()'>Save Score</button>
       </div><br>
 
     </div>
@@ -38,7 +38,17 @@
 
 
   <div id='board' class="col-md-7 col-md-offset-2">
-    <ng-component *ngFor="let card of cards"></ng-component>
+<!--    <img src="assets/naipes/fondo_espacio.jpg">-->
+
+    <div *ngFor="let card of cards; let i = index">
+<!--      "assets/naipes/{{card}}" es la carta {{i}}-->
+      <img src="{{card}}" id='{{card}}' height="140" width="80" (click)='flipCard()'/>
+
+    </div>
+
+
+
+
 <!--    <ng-container *ngFor="let out of output">-->
 <!--     {{output}}-->
 <!--    </ng-container>-->
