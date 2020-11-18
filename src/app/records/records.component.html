@@ -1,1 +1,30 @@
-<p>records menu</p>
+<div id='records'>
+  <div>
+    <legend><strong>Records</strong><br></legend>
+    <table id='tabla-records' class="table table-hover">
+      <thead>
+      <tr >
+        <th>Username</th>
+        <th>Score</th>
+        <th>Number of cards</th>
+        <th>Limit time</th>
+        <th>Date of game</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let record of topRecords">
+        <th>{{record.username}}</th>
+        <th>{{record.punctuation}}</th>
+        <th>{{record.cards}}</th>
+        <th>{{record.disposedTime}}</th>
+        <th>{{record.recordDate | date:'dd/MM/yyyy' }}</th>
+      </tr>
+      </tbody>
+    </table>
+
+    <hr/>
+
+
+  </div>
+</div>

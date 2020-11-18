@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { SigninComponent } from './signin/signin.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {FormsModule} from '@angular/forms';
 import {PreferencesmanagerService} from './shared/services/preferencesmanager.service';
+import {RecordrestService} from './shared/services/recordrest.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,10 @@ import {PreferencesmanagerService} from './shared/services/preferencesmanager.se
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [PreferencesmanagerService],
+  providers: [PreferencesmanagerService, RecordrestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
