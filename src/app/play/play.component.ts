@@ -17,7 +17,7 @@ export class PlayComponent implements OnInit {
   numberOfCards = 0;
   timeLimit = 0;
   currentScore = 0;
-  countdown = 0;
+  countdown: any;
   remainingTime = 0;
   loadedPreferences: string | null= '';
   output = '';
@@ -91,8 +91,6 @@ export class PlayComponent implements OnInit {
     this.flippedCards = 0;
     if (this.timeLimit != 0) {
       this.timer();
-    }else{
-      this.remainingTime = Number('No time');
     }
     this.positionVector();
 
