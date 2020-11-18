@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {FormsModule} from '@angular/forms';
+import {PreferencesmanagerService} from './shared/services/preferencesmanager.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {FormsModule} from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [PreferencesmanagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
