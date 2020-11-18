@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {User} from '../models/user.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +12,10 @@ export class UsersrestService {
 
   logInUser(username: string, password: string){
     return this.http.get(this.baseurl + '/users/login?username=' + username + '&password=' + password,  {observe: 'response'});
+  }
+
+  addNewUser(newUser: User){
+    return this.http.post(this.baseurl + '/users/', newUser);
   }
 
   setUserToken( username: string, token: string ) {

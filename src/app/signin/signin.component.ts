@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../shared/models/user.model';
+import {UsersrestService} from '../shared/services/usersrest.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,7 +16,7 @@ export class SigninComponent implements OnInit {
   errorMsg = false;
   userList: User[] = [];
 
-  constructor() {
+  constructor(private connection: UsersrestService) {
   }
 
   addUser(): void {
@@ -25,6 +26,10 @@ export class SigninComponent implements OnInit {
       this.errorMsg = false;
       const newUser: User = new User(this.newUsername, this.newEmail, this.newPassword);
       this.userList.push(newUser);
+      this.connection.addNewUser(newUser).subscribe(
+        (res) => {console.log(res); },
+        (error) => {alert('Invalid user or password')}
+      )
     }
     this.newPassword = '';
     this.repeatPassword = '';
