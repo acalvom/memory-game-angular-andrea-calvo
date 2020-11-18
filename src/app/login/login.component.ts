@@ -13,18 +13,23 @@ export class LoginComponent implements OnInit {
   errorMsg = false;
   passwordVisible = false;
   mytoken;
+  status;
   jsonobj;
 
   constructor(private connection: UsersrestService) { }
 
   loginUser(username: string, password: string): void {
-    //console.log(this.username);
-    //console.log(this.password);
-    this.connection.logInUser(username, password).subscribe(response => {
+    this.connection.logInUser(username, password).subscribe(
+      response => {
       this.mytoken = response.headers.get('Authorization');
+      this.connection.setUserToken(username,this.mytoken)
+      this.status = response.status;
+        console.log(this.mytoken);
+        console.log(this.status);},
+      (error) => {alert('Invalid user or password') }
       //this.jsonobj = response.body; //body es un obj json
-      console.log(this.mytoken);
-    });
+
+    );
 
 
   }

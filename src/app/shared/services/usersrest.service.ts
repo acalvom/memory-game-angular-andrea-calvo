@@ -11,4 +11,14 @@ export class UsersrestService {
   logInUser(username: string, password: string){
     return this.http.get(this.baseurl + '/users/login?username=' + username + '&password=' + password,  {observe: 'response'});
   }
+
+  setUserToken( username: string, token: string ) {
+    let tokenInfo: string[] = [username, token];
+    sessionStorage.setItem('token', String(tokenInfo));
+  }
+
+  getUserToken(): string | null  {
+    return sessionStorage.getItem('token');
+  }
+
 }
