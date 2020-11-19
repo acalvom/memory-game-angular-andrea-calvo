@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   passwordVisible = false;
   mytoken;
   status;
-  jsonobj;
 
   constructor(private connection: UsersrestService) { }
 
@@ -27,11 +26,7 @@ export class LoginComponent implements OnInit {
         console.log(this.mytoken);
         console.log(this.status);},
       (error) => {alert('Invalid user or password') }
-      //this.jsonobj = response.body; //body es un obj json
-
     );
-
-
   }
 
   showPassword(): void {
