@@ -15,7 +15,11 @@ export class UsersrestService {
   }
 
   addNewUser(newUser: User){
-    return this.http.post(this.baseurl + '/users/', newUser);
+    return this.http.post(this.baseurl + '/users/', newUser, {observe: 'response'});
+  }
+
+  checkUser(username: string){
+    return this.http.get(this.baseurl + '/users/' + username,  {observe: 'response'});
   }
 
   setUserToken( username: string, token: string ) {

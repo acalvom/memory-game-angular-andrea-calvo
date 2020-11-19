@@ -6,9 +6,19 @@
       <div class="form-group row">
         <label for="newUsername" class="col-md-2 col-md-offset-2 col-form-label">User: </label>
         <input type="text" class="col-md-2 form-control" id="newUsername" [(ngModel)]="newUsername"
-               name="newUsername"
+               (blur)="checkUser(newUsername)" name="newUsername"
                required placeholder="User">
       </div>
+
+      <div class="form-group row">
+        <ng-container [ngSwitch]="userStatusCode"  class="col-md-2 col-md-offset-2">
+          <p *ngSwitchCase="200" >{{newUsername}} already exists</p>
+          <p *ngSwitchCase="500">Internal Server Error</p>
+          <p *ngSwitchCase="404">Available username</p>
+          <p *ngSwitchDefault> </p>
+        </ng-container>
+      </div>
+
 
       <div class="form-group row">
         <label for="newEmail" class="col-md-2 col-md-offset-2 col-form-label">Email: </label>
@@ -21,7 +31,6 @@
         <input type="password" class="col-md-2 form-control" id="newPassword"
                [(ngModel)]="newPassword" name="newPassword"
                required placeholder="Password">
-
       </div>
 
       <div class="form-group row">
@@ -32,9 +41,16 @@
                required placeholder="Repeat password">
       </div>
 
-      <ng-container *ngIf="errorMsg">
-        Passwords do not match!
-      </ng-container>
+      <div class="form-group row">
+        <ng-container [ngSwitch]="passwordStatusCode"  class="col-md-2 col-md-offset-2">
+          <p *ngSwitchCase="100" >Passwords do not match!</p>
+          <p *ngSwitchCase="400" >Fields must be filled</p>
+          <p *ngSwitchCase="500" >Internal Server Error</p>
+          <p *ngSwitchCase="409" >Duplicated username</p>
+          <p *ngSwitchCase="201" >WELCOME TO THE COMMUNITY {{newUsername}}!</p>
+          <p *ngSwitchDefault>  </p>
+        </ng-container>
+      </div>
       <br>
       <div class="form-group row">
         <div class="col-md-10 offset-md-2">

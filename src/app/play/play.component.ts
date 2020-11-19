@@ -191,7 +191,7 @@ export class PlayComponent implements OnInit {
       this.currentScore = this.currentScore + 75;
     } else if (this.timeLimit == 60) {
       this.currentScore = this.currentScore + 100;
-    } 
+    }
   }
 
   saveScore() {
