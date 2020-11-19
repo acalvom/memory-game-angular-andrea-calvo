@@ -4,8 +4,8 @@
 
       <div id='cards' class="row">
         <div class="col-md-12 column"><strong>Matched Cards</strong> <br/>
-          <input type='text' id='flippedCards' [(ngModel)]="flippedCards"
-                 name='flippedCards' size="6" readonly>
+          <input type='text' id='matchedCards' [(ngModel)]="matchedCards"
+                 name='matchedCards' size="6" readonly>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
       </div>
 
       <div class="col-md-10 offset-md-2">
-        <button id='btn_start' type='button' value="Start Game" class="btn btn-primary"
+        <button *ngIf="registeredUser" id='btn_start' type='button' [disabled]="!isWinner" value="Start Game" class="btn btn-primary"
                 (click)='saveScore()'>Save Score</button>
       </div><br>
 
@@ -40,11 +40,16 @@
   <div id='board' class="col-md-7 col-md-offset-2">
 <!--    <img src="assets/naipes/fondo_espacio.jpg">-->
 
-    <div *ngFor="let card of cards; let i = index">
-<!--      "assets/naipes/{{card}}" es la carta {{i}}-->
-      <img src="{{card}}" id='{{card}}' height="140" width="80" (click)='flipCard()'/>
+    <!--<ng-container *ngFor="let card of cards; let i = index">
+&lt;!&ndash;      "assets/naipes/{{card}}" es la carta {{i}}&ndash;&gt;
+      <img src="{{card}}" id='{{card}}' (click)='flipCard()'/>
 
-    </div>
+    </ng-container>-->
+    <ng-container *ngFor="let card of cardList; let i = index">
+      <!--      "assets/naipes/{{card}}" es la carta {{i}}-->
+      <img src="{{card.shown}}" id='{{card.cardId}}' (click)='flipCard(card)'/>
+
+    </ng-container>
 
 
 

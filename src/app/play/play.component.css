@@ -1,30 +1,23 @@
 div#board {
   background-color: rgb(240, 241, 168);
-  border: 2px solid rgb(103, 219, 235);
   width: 80%;
   height: 80vh;
   padding: 24px;
   margin: 0 auto;
-  margin-top: 10px;
+  align-content: center;
 }
 
-div#board > div {
-  background-image: url("../../assets/naipes/fondo_espacio.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 79px;
+div#board > img {
+  padding: 3px;
+  width: 80px;
   height: 140px;
-  border: 2px solid rgb(103, 219, 235);
   float: left;
-  padding: 10px;
-  margin: 5px;
-  font-size: 30px;
   cursor: pointer;
   text-align: center;
+  margin: 0 auto;
 }
 
-#flippedCards,
+#matchedCards,
 #remainingTime,
 #currentScore {
   font: small-caps lighter 20px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
@@ -39,7 +32,7 @@ div#board > div {
   font: small-caps lighter 18px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
   "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
   text-align: center;
-  border: 2px solid rgb(103, 219, 235);
+
 }
 
 .column {
