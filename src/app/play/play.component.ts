@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PreferencesmanagerService} from '../shared/services/preferencesmanager.service';
 import {UsersrestService} from '../shared/services/usersrest.service';
 import {card} from '../shared/models/card.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-play',
@@ -25,6 +26,7 @@ export class PlayComponent implements OnInit {
   loadedPreferences: string | null = '';
   loadedUserToken: string | null = '';
   cardList: card[] = [];
+  gameOver;
 
 
   cardID = 0;
@@ -33,7 +35,7 @@ export class PlayComponent implements OnInit {
   registeredUser: boolean = false;
 
 
-  constructor(private preferences: PreferencesmanagerService, private usersrestService: UsersrestService) {
+  constructor(private router: Router,private preferences: PreferencesmanagerService, private usersrestService: UsersrestService) {
   }
 
   readPreferences(): void {
@@ -51,11 +53,15 @@ export class PlayComponent implements OnInit {
         this.timeLimit = preferencesArray[1];
       }
       //this.numberOfCards = 4;
-      //this.timeLimit = 60;
+      //this.timeLimit = 3;
       //console.log(this.numberOfCards, this.timeLimit);
     }
     this.remainingTime = this.timeLimit;
     this.positionVector();
+  }
+
+  exitGame(){
+    this.router.navigate(['start']);
   }
 
   positionVector(): void {
@@ -66,7 +72,6 @@ export class PlayComponent implements OnInit {
     while (end !== this.numberOfCards) {
       for (let i = 0; i <= (this.numberOfCards - 1); i++) {
         randomNumber = Math.round(Math.random() * (this.numberOfCards - 1));
-        //this.cards[i] = 'card_' + i + '.jpg)';
         if (this.values.indexOf(randomNumber) === -1) {
           this.values.push(randomNumber);
           end++;
@@ -88,24 +93,27 @@ export class PlayComponent implements OnInit {
     console.log(this.cardList);
   }
 
-  restartGame(): void {
-
-  }
 
   timer(): void {
     this.countdown = setInterval(() => {
-      if (this.remainingTime <= 0) {
+      if (this.remainingTime == 0) {
+        this.gameOver = true;
+        console.log(this.gameOver);
         clearInterval(this.countdown);
-        alert('YOU LOOSE!');
+        //alert('YOU LOOSE!');
       }
       this.remainingTime -= 1;
+
+
     }, 1000);
+
   }
 
   newGame(): void {
     this.readPreferences();
     this.currentScore = 0;
     this.flippedCards = 0;
+    this.gameOver = false;
     if (this.timeLimit != 0) {
       this.timer();
     }
@@ -119,7 +127,7 @@ export class PlayComponent implements OnInit {
 
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
-    //console.log(this.loadedUserToken);
+    console.log(this.loadedUserToken);
     this.registeredUser = this.loadedUserToken != null;
   }
 

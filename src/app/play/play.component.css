@@ -42,4 +42,103 @@ div#board > img {
   padding: 14px;
 }
 
+/* FOR GAME OVER VIEW */
+
+#win, #loose {width: 750px;
+  height: 580px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 40px;
+
+  animation-name: animacao1;
+  animation-duration: 1s;
+  animation-timing-function:  linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;}
+
+
+.gameover {width:750px;
+  height: auto;
+  padding-top: 60px;
+  background: none;}
+
+.gameover p {margin-top: 0px;
+  margin-bottom: 0px;
+  font: small-caps lighter 160px/150% "Segoe UI", Frutiger, "Frutiger Linotype",
+  "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+  line-height: 120px;
+  text-align: center;
+  text-shadow: 5px 5px #000000;
+  color: #ffffff;}
+
+.continue	{width: 750px;
+  height: auto;
+  padding-top: 40px;}
+
+.continue p {margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: corbel;
+  color: #ffffff;
+  text-shadow: 2.5px 2.5px #000000;}
+
+.opcoes {width: 550px;
+  height: auto;
+  padding-top: 50px;
+  margin: auto;}
+
+.yes p {text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: corbel;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 1.5px 1.5px #FB3733;
+  padding: 25px 100px 25px 100px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  background: rgb(229, 233, 5);
+  margin-right: 30px;
+  float: left;}
+
+
+@keyframes animacao2 { from {transform: scale(1);}
+  to {transform: scale(1.1);} }
+
+
+.yes p:hover {-webkit-animation-name: animacao2;
+
+  animation-name: animacao2;
+  animation-duration: 0.8s;
+  animation-timing-function:  linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;}
+
+.no p {text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: corbel;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 1.5px 1.5px #FB3733;
+  padding: 25px 100px 25px 100px;
+  border-radius: 20px;
+  background: rgb(103, 219, 235);
+  float: left;}
+
+@keyframes animacao3 { 0% {transform: translate(-5px,0px);}
+  25% {transform: translate(-2.5px, 0px);}
+  50% {transform: translate(0px, 0px);}
+  75% {transform: translate(2.5px, 0px);}
+  100% {transform: translate(5px, 0px);} }
+
+
+.no p:hover {-webkit-animation-name: animacao3;
+  animation-name: animacao3;
+  animation-duration: 0.15s;
+  animation-timing-function:  linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;}
 

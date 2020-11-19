@@ -32,30 +32,54 @@
 
     </div>
 
-
   </div>
 
-
-
-  <div id='board' class="col-md-7 col-md-offset-2">
-<!--    <img src="assets/naipes/fondo_espacio.jpg">-->
-
-    <!--<ng-container *ngFor="let card of cards; let i = index">
-&lt;!&ndash;      "assets/naipes/{{card}}" es la carta {{i}}&ndash;&gt;
-      <img src="{{card}}" id='{{card}}' (click)='flipCard()'/>
-
-    </ng-container>-->
+  <div *ngIf="!gameOver; else youLose" name="gameOver" id='board' class="col-md-7 col-md-offset-2">
     <ng-container *ngFor="let card of cardList; let i = index">
-      <!--      "assets/naipes/{{card}}" es la carta {{i}}-->
       <img src="{{card.shown}}" id='{{card.cardId}}' (click)='flipCard(card)'/>
-
     </ng-container>
-
-
-
-
-<!--    <ng-container *ngFor="let out of output">-->
-<!--     {{output}}-->
-<!--    </ng-container>-->
   </div>
+
+  <!--<div *ngIf="isWinner" name="isWinner" class="col-md-7 col-md-offset-2">
+    <div id="win">
+
+      <div class="gameover">
+        <p> YOU </p>
+        <p> WIN </p>
+      </div>
+
+      <div class="continue"> <p> NEW GAME? </p> </div>
+      <div class="opcoes">
+        <div class="yes"> <p (click)='newGame()'> YES </p> </div>
+        <div class="no"> <p (click)='exitGame()'> NO </p> </div>
+        <div class="external-author">
+          <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
+        </div>
+      </div>
+
+    </div>
+  </div>-->
+
+
+  <ng-template #youLose>
+    <div id="loose">
+
+      <div class="gameover">
+        <p> GAME </p>
+        <p> OVER </p>
+      </div>
+
+      <div class="continue"> <p> NEW GAME? </p> </div>
+      <div class="opcoes">
+        <div class="yes"> <p (click)='newGame()'> YES </p> </div>
+        <div class="no"> <p (click)='exitGame()'> NO </p> </div>
+        <div class="external-author">
+          <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
+        </div>
+      </div>
+
+    </div>
+
+  </ng-template>
 </div>
+
