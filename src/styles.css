@@ -44,3 +44,12 @@ legend {
   color: rgb(103, 219, 235);
 }
 
+.errorMsg {
+  color: rgb(255, 3, 3);
+  padding-bottom: 2px;
+}
+
+.successMsg {
+  color: rgb(46, 221, 47);
+  padding-bottom: 2px;
+}

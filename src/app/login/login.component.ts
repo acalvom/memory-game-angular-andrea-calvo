@@ -8,25 +8,29 @@ import {UsersrestService} from '../shared/services/usersrest.service';
 })
 export class LoginComponent implements OnInit {
 
-  username ='';
-  password ='';
-  errorMsg = false;
+  username = '';
+  password = '';
   passwordVisible = false;
-  mytoken;
-  status;
+  userToken;
+  loginStatusCode;
 
-  constructor(private connection: UsersrestService) { }
+  constructor(private connection: UsersrestService) {
+  }
 
   loginUser(username: string, password: string): void {
     this.connection.logInUser(username, password).subscribe(
       response => {
-      this.mytoken = response.headers.get('Authorization');
-      this.connection.setUserToken(username,this.mytoken)
-      this.status = response.status;
-        console.log(this.mytoken);
-        console.log(this.status);},
-      (error) => {alert('Invalid user or password') }
+        this.userToken = response.headers.get('Authorization');
+        this.connection.setUserToken(username, this.userToken);
+        this.loginStatusCode = response.status;
+      },
+      (error) => {
+        this.loginStatusCode = error.status;
+        this.password = '';
+      }
     );
+    //console.log('User Token: ' + this.userToken);
+    //console.log('Login Status: ' + this.loginStatusCode);
   }
 
   showPassword(): void {

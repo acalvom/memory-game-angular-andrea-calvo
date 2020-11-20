@@ -15,13 +15,7 @@
         <input [type]="passwordVisible ? 'text' : 'password'" class="col-md-2 form-control" id="password"
                [(ngModel)]="password" name="password"
                required placeholder="Password">
-
       </div>
-
-
-      <ng-container *ngIf="errorMsg">
-        Incorrect password.
-      </ng-container>
 
       <div class="form-group row">
         <div class="col-md-10 offset-md-2">
@@ -29,6 +23,16 @@
                  [(ngModel)]="passwordVisible" name="showPassword" (click)='showPassword()'>
           Show Password
         </div>
+      </div>
+
+      <div class="form-group row">
+        <ng-container [ngSwitch]="loginStatusCode" class="col-md-2 col-md-offset-2">
+          <p class="errorMsg" *ngSwitchCase="400">All fields must be filled</p>
+          <p class="errorMsg" *ngSwitchCase="500">Internal Server Error</p>
+          <p class="errorMsg" *ngSwitchCase="401">Invalid username or password. Please, check credentials</p>
+          <p class="successMsg" *ngSwitchCase="200">WELCOME BACK {{username}}!</p>
+          <p *ngSwitchDefault></p>
+        </ng-container>
       </div>
 
       <div class="form-group row">
