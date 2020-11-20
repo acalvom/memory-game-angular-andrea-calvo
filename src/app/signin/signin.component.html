@@ -43,11 +43,11 @@
 
       <div class="form-group row">
         <ng-container [ngSwitch]="passwordStatusCode"  class="col-md-2 col-md-offset-2">
-          <p *ngSwitchCase="100" >Passwords do not match!</p>
-          <p *ngSwitchCase="400" >Fields must be filled</p>
-          <p *ngSwitchCase="500" >Internal Server Error</p>
-          <p *ngSwitchCase="409" >Duplicated username</p>
-          <p *ngSwitchCase="201" >WELCOME TO THE COMMUNITY {{newUsername}}!</p>
+          <p class="errorMsg" *ngSwitchCase="100" >Passwords do not match!</p>
+          <p class="errorMsg" *ngSwitchCase="400" >All fields must be filled</p>
+          <p class="errorMsg" *ngSwitchCase="500" >Internal Server Error</p>
+          <p class="errorMsg" *ngSwitchCase="409" >Duplicated username</p>
+          <p class="successMsg" *ngSwitchCase="201" >WELCOME TO THE COMMUNITY {{newUsername}}!</p>
           <p *ngSwitchDefault>  </p>
         </ng-container>
       </div>
