@@ -3,6 +3,8 @@ import {PreferencesmanagerService} from '../shared/services/preferencesmanager.s
 import {UsersrestService} from '../shared/services/usersrest.service';
 import {card} from '../shared/models/card.model';
 import {Router} from '@angular/router';
+import {RecordrestService} from '../shared/services/recordrest.service';
+import {records} from '../shared/models/records.model';
 
 @Component({
   selector: 'app-play',
@@ -28,14 +30,15 @@ export class PlayComponent implements OnInit {
   cardList: card[] = [];
   gameOver;
 
-
   cardID = 0;
   cardSrc = '';
   isWinner: boolean = false;
   registeredUser: boolean = false;
 
-
-  constructor(private router: Router,private preferences: PreferencesmanagerService, private usersrestService: UsersrestService) {
+  constructor(private router: Router,
+              private preferences: PreferencesmanagerService,
+              private usersrestService: UsersrestService,
+              private recordrestService: RecordrestService) {
   }
 
   readPreferences(): void {
@@ -52,16 +55,12 @@ export class PlayComponent implements OnInit {
         this.numberOfCards = preferencesArray[0];
         this.timeLimit = preferencesArray[1];
       }
-      //this.numberOfCards = 4;
-      //this.timeLimit = 3;
+      this.numberOfCards = 4;
+      this.timeLimit = 30;
       //console.log(this.numberOfCards, this.timeLimit);
     }
     this.remainingTime = this.timeLimit;
     this.positionVector();
-  }
-
-  exitGame(){
-    this.router.navigate(['start']);
   }
 
   positionVector(): void {
@@ -103,10 +102,7 @@ export class PlayComponent implements OnInit {
         //alert('YOU LOOSE!');
       }
       this.remainingTime -= 1;
-
-
     }, 1000);
-
   }
 
   newGame(): void {
@@ -120,15 +116,14 @@ export class PlayComponent implements OnInit {
     this.positionVector();
   }
 
-  ngOnInit(): void {
-    this.newGame();
-    this.loadUser();
-  }
-
-  loadUser() {
-    this.loadedUserToken = this.usersrestService.getUserToken();
-    console.log(this.loadedUserToken);
-    this.registeredUser = this.loadedUserToken != null;
+  createBoard(index: number) {
+    let oneCard: card = new card();
+    oneCard.cardId = this.values[index];
+    oneCard.src = this.cards[index];
+    oneCard.reverse = 'assets/naipes/fondo_espacio.jpg';
+    oneCard.shown = oneCard.reverse;
+    oneCard.state = 0;
+    this.cardList[index] = (oneCard);
   }
 
   flipCard(flippedCard: card): void {
@@ -143,6 +138,11 @@ export class PlayComponent implements OnInit {
       this.checkCards(this.selectedCards);
       this.flippedCards = 0;
     }
+  }
+
+  flipBack(pickedCards: card[]) {
+    pickedCards[0].shown = pickedCards[0].reverse;
+    pickedCards[1].shown = pickedCards[1].reverse;
   }
 
   checkCards(pickedCards: card[]): void {
@@ -161,27 +161,12 @@ export class PlayComponent implements OnInit {
     this.selectedCards = [];
   }
 
-  flipBack(pickedCards: card[]) {
-    pickedCards[0].shown = pickedCards[0].reverse;
-    pickedCards[1].shown = pickedCards[1].reverse;
-  }
-
   checkWinner(matchedCards: number) {
     if (matchedCards == this.numberOfCards) {
       this.extraScore();
       clearInterval(this.countdown);
       this.isWinner = true;
     }
-  }
-
-  createBoard(index: number) {
-    let oneCard: card = new card();
-    oneCard.cardId = this.values[index];
-    oneCard.src = this.cards[index];
-    oneCard.reverse = 'assets/naipes/fondo_espacio.jpg';
-    oneCard.shown = oneCard.reverse;
-    oneCard.state = 0;
-    this.cardList[index] = (oneCard);
   }
 
   extraScore() {
@@ -202,7 +187,37 @@ export class PlayComponent implements OnInit {
     }
   }
 
-  saveScore() {
-
+  createRecord(){
+    let newRecord: records = new records();
+    newRecord.punctuation = this.currentScore;
+    newRecord.cards = this.numberOfCards;
+    newRecord.disposedTime = this.timeLimit;
+    return newRecord;
   }
+
+  saveScore(): void {
+    let token: string = this.loadedUserToken.split(',')[1];
+    console.log("token " + token);
+    let newRecord: records = this.createRecord();
+    this.recordrestService.postRecord(newRecord, token).subscribe(
+      (res) => {console.log(res); },
+      (error) => {console.log(error);}
+    );
+  }
+
+  exitGame(){
+    this.router.navigate(['start']);
+  }
+
+  loadUser() {
+    this.loadedUserToken = this.usersrestService.getUserToken();
+    console.log(this.loadedUserToken);
+    this.registeredUser = this.loadedUserToken != null;
+  }
+
+  ngOnInit(): void {
+    this.newGame();
+    this.loadUser();
+  }
+
 }
