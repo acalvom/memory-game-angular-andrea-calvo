@@ -26,60 +26,67 @@
       </div>
 
       <div class="col-md-10 offset-md-2">
-        <button *ngIf="registeredUser" id='btn_start' type='button' [disabled]="!isWinner" value="Start Game" class="btn btn-primary"
-                (click)='saveScore()'>Save Score</button>
-      </div><br>
+        <button *ngIf="registeredUser" id='btn_start' type='button' [disabled]="gameStatus != 200" value="Start Game"
+                class="btn btn-primary"
+                (click)='saveScore()'>Save Score
+        </button>
+      </div>
+      <br>
 
     </div>
 
   </div>
 
-  <div *ngIf="!gameOver; else youLose" name="gameOver" id='board' class="col-md-7 col-md-offset-2">
-    <ng-container *ngFor="let card of cardList; let i = index">
-      <img src="{{card.shown}}" id='{{card.cardId}}' (click)='flipCard(card)'/>
+
+  <div class="form-group row">
+    <ng-container [ngSwitch]="gameStatus" class="col-md-2 col-md-offset-2">
+      <div *ngSwitchCase="100" id='board' class="col-md-7 col-md-offset-2">
+        <ng-container *ngFor="let card of cardList; let i = index">
+          <img src="{{card.shown}}" id='{{card.cardId}}' (click)='flipCard(card)'/>
+        </ng-container>
+      </div>
+
+      <div *ngSwitchCase="200" class="col-md-7 ">
+        <div id="win">
+
+          <div class="gameover">
+            <p> YOU </p>
+            <p> WIN </p>
+          </div>
+
+          <div class="continue"><p> NEW GAME? </p></div>
+          <div class="opcoes">
+            <div class="yes"><p (click)='newGame()'> YES </p></div>
+            <div class="no"><p (click)='exitGame()'> NO </p></div>
+            <div class="external-author">
+              <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngSwitchCase="400" class="col-md-7 ">
+        <div id="loose">
+
+          <div class="gameover">
+            <p> GAME </p>
+            <p> OVER </p>
+          </div>
+
+          <div class="continue"><p> NEW GAME? </p></div>
+          <div class="opcoes">
+            <div class="yes"><p (click)='newGame()'> YES </p></div>
+            <div class="no"><p (click)='exitGame()'> NO </p></div>
+            <div class="external-author">
+              <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </ng-container>
   </div>
 
-  <!--<div *ngIf="isWinner" name="isWinner" class="col-md-7 col-md-offset-2">
-    <div id="win">
-
-      <div class="gameover">
-        <p> YOU </p>
-        <p> WIN </p>
-      </div>
-
-      <div class="continue"> <p> NEW GAME? </p> </div>
-      <div class="opcoes">
-        <div class="yes"> <p (click)='newGame()'> YES </p> </div>
-        <div class="no"> <p (click)='exitGame()'> NO </p> </div>
-        <div class="external-author">
-          <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
-        </div>
-      </div>
-
-    </div>
-  </div>-->
-
-
-  <ng-template #youLose>
-    <div id="loose">
-
-      <div class="gameover">
-        <p> GAME </p>
-        <p> OVER </p>
-      </div>
-
-      <div class="continue"> <p> NEW GAME? </p> </div>
-      <div class="opcoes">
-        <div class="yes"> <p (click)='newGame()'> YES </p> </div>
-        <div class="no"> <p (click)='exitGame()'> NO </p> </div>
-        <div class="external-author">
-          <a href="https://codepen.io/leo_fantinati">Original design @leo_fantinati </a><br><br>
-        </div>
-      </div>
-
-    </div>
-
-  </ng-template>
 </div>
 

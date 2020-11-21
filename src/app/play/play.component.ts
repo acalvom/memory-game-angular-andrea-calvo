@@ -13,32 +13,53 @@ import {records} from '../shared/models/records.model';
 })
 export class PlayComponent implements OnInit {
 
-  values: number[] = [];
-  selectedCards: card[] = [];
-  selectedCardsIds: number[] = [];
-  flippedCards = 0;
-  cards: string [] = [];
+  /* Paths */
+  frontPath: string = 'assets/naipes/img_';
+  reversePath: string = 'assets/naipes/fondo_espacio.jpg';
 
-  numberOfCards = 0;
-  matchedCards = 0;
-  timeLimit = 0;
-  currentScore = 0;
-  countdown: any;
-  remainingTime = 0;
+  /* Preferences parameters */
+  numberOfCards;
+  timeLimit;
   loadedPreferences: string | null = '';
-  loadedUserToken: string | null = '';
-  cardList: card[] = [];
-  gameOver;
 
-  cardID = 0;
-  cardSrc = '';
-  isWinner: boolean = false;
+  /* Play menu parameters */
+  matchedCards;
+  currentScore;
+  remainingTime;
+  gameStatus;
+
+  /* User credentials */
+  loadedUserToken: string | null = '';
   registeredUser: boolean = false;
+
+  /* Internal parameters */
+  values: number[];
+  countdown: any;
+  flippedCards;
+  selectedCards: card[];
+  cards: string [];
+  cardList: card[];
 
   constructor(private router: Router,
               private preferences: PreferencesmanagerService,
               private usersrestService: UsersrestService,
               private recordrestService: RecordrestService) {
+  }
+
+  resetParameters(): void {
+    this.numberOfCards = 0;
+    this.timeLimit = 0;
+
+    this.matchedCards = 0;
+    this.currentScore = 0;
+    this.remainingTime = 0;
+
+    this.flippedCards = 0;
+    this.gameStatus = 100;
+    this.values = [];
+    this.selectedCards = [];
+    this.cards = [];
+    this.cardList = [];
   }
 
   readPreferences(): void {
@@ -56,11 +77,10 @@ export class PlayComponent implements OnInit {
         this.timeLimit = preferencesArray[1];
       }
       this.numberOfCards = 4;
-      this.timeLimit = 30;
+      this.timeLimit = 10;
       //console.log(this.numberOfCards, this.timeLimit);
     }
     this.remainingTime = this.timeLimit;
-    this.positionVector();
   }
 
   positionVector(): void {
@@ -85,56 +105,49 @@ export class PlayComponent implements OnInit {
       } else {
         this.values[i] = randomNumber;
       }
-      this.cards[i] = 'assets/naipes/img_' + this.values[i] + '.jpg';
+      this.cards[i] = this.frontPath + this.values[i] + '.jpg';
       this.createBoard(i);
     }
     console.log(this.values, this.cards);
-    console.log(this.cardList);
   }
 
 
   timer(): void {
     this.countdown = setInterval(() => {
       if (this.remainingTime == 0) {
-        this.gameOver = true;
-        console.log(this.gameOver);
+        this.gameStatus = 400;
         clearInterval(this.countdown);
-        //alert('YOU LOOSE!');
       }
       this.remainingTime -= 1;
     }, 1000);
   }
 
   newGame(): void {
+    this.resetParameters();
     this.readPreferences();
-    this.currentScore = 0;
-    this.flippedCards = 0;
-    this.gameOver = false;
+    this.positionVector();
     if (this.timeLimit != 0) {
       this.timer();
     }
-    this.positionVector();
   }
 
   createBoard(index: number) {
     let oneCard: card = new card();
     oneCard.cardId = this.values[index];
     oneCard.src = this.cards[index];
-    oneCard.reverse = 'assets/naipes/fondo_espacio.jpg';
+    oneCard.reverse = this.reversePath;
     oneCard.shown = oneCard.reverse;
     oneCard.state = 0;
     this.cardList[index] = (oneCard);
   }
 
   flipCard(flippedCard: card): void {
-    console.log(this.flippedCards);
     flippedCard.shown = flippedCard.src;
     if (this.flippedCards == 0) {
       this.selectedCards.push(flippedCard);
       this.flippedCards++;
     } else if (this.flippedCards == 1) {
       this.selectedCards.push(flippedCard);
-      console.log('Dos cartas', this.selectedCards);
       this.checkCards(this.selectedCards);
       this.flippedCards = 0;
     }
@@ -147,12 +160,12 @@ export class PlayComponent implements OnInit {
 
   checkCards(pickedCards: card[]): void {
     if (pickedCards[0].cardId == pickedCards[1].cardId) {
-      console.log('SAME CARDS');
+      //console.log('SAME CARDS');
       this.currentScore += 15;
       this.matchedCards += 2;
       this.checkWinner(this.matchedCards);
     } else {
-      console.log('DIFFERENT CARDS');
+      //console.log('DIFFERENT CARDS');
       this.currentScore -= 5;
       setTimeout(() => {
         this.flipBack(pickedCards);
@@ -165,7 +178,7 @@ export class PlayComponent implements OnInit {
     if (matchedCards == this.numberOfCards) {
       this.extraScore();
       clearInterval(this.countdown);
-      this.isWinner = true;
+      this.gameStatus = 200;
     }
   }
 
@@ -187,7 +200,7 @@ export class PlayComponent implements OnInit {
     }
   }
 
-  createRecord(){
+  createRecord() {
     let newRecord: records = new records();
     newRecord.punctuation = this.currentScore;
     newRecord.cards = this.numberOfCards;
@@ -197,21 +210,25 @@ export class PlayComponent implements OnInit {
 
   saveScore(): void {
     let token: string = this.loadedUserToken.split(',')[1];
-    console.log("token " + token);
+    console.log('token ' + token);
     let newRecord: records = this.createRecord();
     this.recordrestService.postRecord(newRecord, token).subscribe(
-      (res) => {console.log(res); },
-      (error) => {console.log(error);}
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
     );
   }
 
-  exitGame(){
+  exitGame() {
     this.router.navigate(['start']);
   }
 
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
-    console.log(this.loadedUserToken);
+    //console.log(this.loadedUserToken);
     this.registeredUser = this.loadedUserToken != null;
   }
 
