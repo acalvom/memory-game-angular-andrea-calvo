@@ -14,6 +14,10 @@ export class UsersrestService {
     return this.http.get(this.baseurl + '/users/login?username=' + username + '&password=' + password,  {observe: 'response'});
   }
 
+  logOutUser(){
+    this.deleteUserToken();
+  }
+
   addNewUser(newUser: User){
     return this.http.post(this.baseurl + '/users/', newUser, {observe: 'response'});
   }
@@ -29,6 +33,10 @@ export class UsersrestService {
 
   getUserToken(): string | null  {
     return sessionStorage.getItem('token');
+  }
+
+  deleteUserToken(){
+    sessionStorage.removeItem('token');
   }
 
 }

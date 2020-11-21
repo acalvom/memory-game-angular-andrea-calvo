@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
 import {PreferencesmanagerService} from './shared/services/preferencesmanager.service';
 import {RecordrestService} from './shared/services/recordrest.service';
 import {UsersrestService} from './shared/services/usersrest.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {UsersrestService} from './shared/services/usersrest.service';
     LoginComponent,
     SigninComponent,
     PagenotfoundComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
