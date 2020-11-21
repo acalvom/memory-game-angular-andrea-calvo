@@ -76,8 +76,8 @@ export class PlayComponent implements OnInit {
         this.numberOfCards = preferencesArray[0];
         this.timeLimit = preferencesArray[1];
       }
-      this.numberOfCards = 4;
-      this.timeLimit = 10;
+      //this.numberOfCards = 4;
+      //this.timeLimit = 10;
       //console.log(this.numberOfCards, this.timeLimit);
     }
     this.remainingTime = this.timeLimit;
