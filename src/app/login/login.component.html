@@ -26,13 +26,15 @@
       </div>
 
       <div class="form-group row">
-        <ng-container [ngSwitch]="loginStatusCode" class="col-md-2 col-md-offset-2">
-          <p class="errorMsg" *ngSwitchCase="400">All fields must be filled</p>
-          <p class="errorMsg" *ngSwitchCase="500">Internal Server Error</p>
-          <p class="errorMsg" *ngSwitchCase="401">Invalid username or password. Please, check credentials</p>
-          <p class="successMsg" *ngSwitchCase="200">WELCOME BACK {{username}}!</p>
-          <p *ngSwitchDefault></p>
-        </ng-container>
+        <div class="col-md-10 offset-md-2">
+          <ng-container [ngSwitch]="loginStatusCode">
+            <p class="errorMsg" *ngSwitchCase="400">All fields must be filled</p>
+            <p class="errorMsg" *ngSwitchCase="500">Internal Server Error</p>
+            <p class="errorMsg" *ngSwitchCase="401">Invalid username or password. Please, check credentials</p>
+            <p class="successMsg" *ngSwitchCase="200">WELCOME BACK {{username}}!</p>
+            <p *ngSwitchDefault></p>
+          </ng-container>
+        </div>
       </div>
 
       <div class="form-group row">
@@ -41,6 +43,7 @@
                   (click)='loginUser(username,password)'>Log In!
           </button>
         </div>
+
       </div>
     </fieldset>
   </form>
