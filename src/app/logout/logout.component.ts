@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersrestService} from '../shared/services/usersrest.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class LogoutComponent implements OnInit {
 
   toDeleteToken;
   loggedUser;
+
   constructor(private connection: UsersrestService) {
   }
 
@@ -19,12 +20,12 @@ export class LogoutComponent implements OnInit {
     if (this.toDeleteToken != null) {
       this.loggedUser = true;
       this.connection.logOutUser();
-      console.log('User LogOut');
+      //console.log('User LogOut');
     } else {
       this.loggedUser = false;
-      console.log('No user logged in');
+      //console.log('No user logged in');
     }
-    console.log(this.toDeleteToken);
+    //console.log(this.toDeleteToken);
   }
 
 }

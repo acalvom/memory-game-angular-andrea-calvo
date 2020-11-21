@@ -1,14 +1,14 @@
 <section>
-    <fieldset>
-      <legend><strong>Log Out</strong><br></legend>
-      <div class="form-group row">
-        <ng-container *ngIf="loggedUser; else noUserLogged" class="col-md-2 col-md-offset-2">
-          <p class="successMsg" >SEE YOU SOON!</p>
-        </ng-container>
-      </div>
+  <fieldset>
+    <legend><strong>Log Out</strong><br></legend>
+    <div class="form-group row">
+      <ng-container *ngIf="loggedUser; else noUserLogged" class="col-md-2 col-md-offset-2">
+        <p class="successMsg">SEE YOU SOON!</p>
+      </ng-container>
+    </div>
 
-      <ng-template #noUserLogged>
-        <p class="errorMsg" >NO USER TO LOG OUT</p>
-      </ng-template>
-    </fieldset>
+    <ng-template #noUserLogged>
+      <p class="errorMsg">NO USER TO LOG OUT</p>
+    </ng-template>
+  </fieldset>
 </section>
