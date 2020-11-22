@@ -1,30 +1,80 @@
 <div id='records'>
-  <div>
-    <legend><strong>Records</strong><br></legend>
-    <table id='tabla-records' class="table table-hover">
-      <thead>
-      <tr >
-        <th>Username</th>
-        <th>Score</th>
-        <th>Number of cards</th>
-        <th>Limit time</th>
-        <th>Date of game</th>
+  <div *ngIf="loggedUser; else noUserLogged">
+    <div class="col-md-7">
+      <legend><strong>Top 10 Records</strong><br></legend>
+      <table class='tabla-records' class="table table-hover">
+        <thead>
+        <tr >
+          <th>Username</th>
+          <th>Score</th>
+          <th>Number of cards</th>
+          <th>Limit time</th>
+          <th>Date of game</th>
 
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let record of topRecords">
-        <th>{{record.username}}</th>
-        <th>{{record.punctuation}}</th>
-        <th>{{record.cards}}</th>
-        <th>{{record.disposedTime}}</th>
-        <th>{{record.recordDate | date:'dd/MM/yyyy' }}</th>
-      </tr>
-      </tbody>
-    </table>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of topRecords">
+          <th>{{record.username}}</th>
+          <th>{{record.punctuation}}</th>
+          <th>{{record.cards}}</th>
+          <th>{{record.disposedTime}}</th>
+          <th>{{record.recordDate | date:'dd/MM/yyyy' }}</th>
+        </tr>
+        </tbody>
+      </table>
+      <hr/>
+    </div>
+    <div class="col-md-5">
+      <legend><strong>Your personal records</strong><br></legend>
+      <table class='tabla-records' class="table table-hover">
+        <thead>
+        <tr >
+          <th>Score</th>
+          <th>Number of cards</th>
+          <th>Limit time</th>
+          <th>Date of game</th>
 
-    <hr/>
-
-
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of userRecords">
+          <th>{{record.punctuation}}</th>
+          <th>{{record.cards}}</th>
+          <th>{{record.disposedTime}}</th>
+          <th>{{record.recordDate | date:'dd/MM/yyyy' }}</th>
+        </tr>
+        </tbody>
+      </table>
+      <hr/>
+    </div>
   </div>
+
+  <ng-template #noUserLogged>
+    <div class="col-md-12">
+      <legend><strong>Top 10 Records</strong><br></legend>
+      <table class='tabla-records' class="table table-hover">
+        <thead>
+        <tr >
+          <th>Username</th>
+          <th>Score</th>
+          <th>Number of cards</th>
+          <th>Limit time</th>
+          <th>Date of game</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of topRecords">
+          <th>{{record.username}}</th>
+          <th>{{record.punctuation}}</th>
+          <th>{{record.cards}}</th>
+          <th>{{record.disposedTime}}</th>
+          <th>{{record.recordDate | date:'dd/MM/yyyy' }}</th>
+        </tr>
+        </tbody>
+      </table>
+      <hr/>
+    </div>
+  </ng-template>
 </div>

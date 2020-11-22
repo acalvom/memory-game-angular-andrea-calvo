@@ -14,6 +14,11 @@ export class RecordrestService {
     return this.http.get(this.baseurl + '/records');
   }
 
+  getUserRecords(username: string, token: string){
+    const headers = new HttpHeaders().set("Authorization", token) ;
+    return this.http.get(this.baseurl + '/records/' + username,  {headers});
+  }
+
   postRecord(newRecord: records, token: string) {
     const headers = new HttpHeaders().set("Authorization", token) ;
     //console.log(headers.get(token));
