@@ -143,10 +143,11 @@ export class PlayComponent implements OnInit {
 
   flipCard(flippedCard: card): void {
     flippedCard.shown = flippedCard.src;
-    if (this.flippedCards == 0) {
+    if (this.flippedCards == 0 ) {
+      flippedCard.state = 1;
       this.selectedCards.push(flippedCard);
       this.flippedCards++;
-    } else if (this.flippedCards == 1) {
+    } else if (this.flippedCards == 1 && flippedCard.state == 0) {
       this.selectedCards.push(flippedCard);
       this.checkCards(this.selectedCards);
       this.flippedCards = 0;
@@ -156,6 +157,8 @@ export class PlayComponent implements OnInit {
   flipBack(pickedCards: card[]) {
     pickedCards[0].shown = pickedCards[0].reverse;
     pickedCards[1].shown = pickedCards[1].reverse;
+    pickedCards[0].state = 0;
+    pickedCards[1].state = 0;
   }
 
   checkCards(pickedCards: card[]): void {
