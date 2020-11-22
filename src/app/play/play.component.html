@@ -26,7 +26,7 @@
       </div>
 
       <div class="col-md-10 offset-md-2">
-        <button *ngIf="registeredUser" id='btn_start' type='button' [disabled]="gameStatus != 200" value="Start Game"
+        <button *ngIf="loggedUser" id='btn_start' type='button' [disabled]="gameStatus != 200" value="Start Game"
                 class="btn btn-primary"
                 (click)='saveScore()'>Save Score
         </button>

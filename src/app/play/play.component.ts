@@ -30,7 +30,7 @@ export class PlayComponent implements OnInit {
 
   /* User credentials */
   loadedUserToken: string | null = '';
-  registeredUser: boolean = false;
+  loggedUser: boolean = false;
 
   /* Internal parameters */
   values: number[];
@@ -76,7 +76,7 @@ export class PlayComponent implements OnInit {
         this.numberOfCards = preferencesArray[0];
         this.timeLimit = preferencesArray[1];
       }
-      //this.numberOfCards = 4;
+      this.numberOfCards = 4;
       //this.timeLimit = 10;
       //console.log(this.numberOfCards, this.timeLimit);
     }
@@ -228,8 +228,8 @@ export class PlayComponent implements OnInit {
 
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
-    //console.log(this.loadedUserToken);
-    this.registeredUser = this.loadedUserToken != null;
+    console.log('mira aqui >>>>>>>>>>> '+this.loadedUserToken);
+    this.loggedUser = this.loadedUserToken != null;
   }
 
   ngOnInit(): void {
