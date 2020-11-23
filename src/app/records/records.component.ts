@@ -24,7 +24,6 @@ export class RecordsComponent implements OnInit {
     this.connection.getTopRecords().subscribe(
     (value: records[]) => {
       this.topRecords = value;
-      //console.log(value);
       }
 
     );
@@ -42,7 +41,6 @@ export class RecordsComponent implements OnInit {
 
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
-    //console.log(this.loadedUserToken);
     if (this.loadedUserToken != null){
       this.loggedUser = true;
       this.showUserRecords();

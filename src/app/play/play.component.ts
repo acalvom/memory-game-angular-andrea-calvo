@@ -76,9 +76,8 @@ export class PlayComponent implements OnInit {
         this.numberOfCards = preferencesArray[0];
         this.timeLimit = preferencesArray[1];
       }
-      this.numberOfCards = 4;
-      //this.timeLimit = 10;
-      //console.log(this.numberOfCards, this.timeLimit);
+      //this.numberOfCards = 4; // For debugging
+      //this.timeLimit = 10; // For debugging
     }
     this.remainingTime = this.timeLimit;
   }
@@ -108,7 +107,7 @@ export class PlayComponent implements OnInit {
       this.cards[i] = this.frontPath + this.values[i] + '.jpg';
       this.createBoard(i);
     }
-    console.log(this.values, this.cards);
+    //console.log(this.values, this.cards);
   }
 
 
@@ -163,12 +162,10 @@ export class PlayComponent implements OnInit {
 
   checkCards(pickedCards: card[]): void {
     if (pickedCards[0].cardId == pickedCards[1].cardId) {
-      //console.log('SAME CARDS');
       this.currentScore += 15;
       this.matchedCards += 2;
       this.checkWinner(this.matchedCards);
     } else {
-      //console.log('DIFFERENT CARDS');
       this.currentScore -= 5;
       setTimeout(() => {
         this.flipBack(pickedCards);
@@ -213,11 +210,11 @@ export class PlayComponent implements OnInit {
 
   saveScore(): void {
     let token: string = this.loadedUserToken.split(',')[1];
-    console.log('token ' + token);
+    //console.log('token ' + token);
     let newRecord: records = this.createRecord();
     this.recordrestService.postRecord(newRecord, token).subscribe(
       (res) => {
-        console.log(res);
+        console.log(res.status);
       },
       (error) => {
         console.log(error);
@@ -231,7 +228,6 @@ export class PlayComponent implements OnInit {
 
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
-    console.log('mira aqui >>>>>>>>>>> '+this.loadedUserToken);
     this.loggedUser = this.loadedUserToken != null;
   }
 

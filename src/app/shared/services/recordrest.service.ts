@@ -21,7 +21,6 @@ export class RecordrestService {
 
   postRecord(newRecord: records, token: string) {
     const headers = new HttpHeaders().set("Authorization", token) ;
-    //console.log(headers.get(token));
-    return this.http.post(this.baseurl + '/records', newRecord, {headers});
+    return this.http.post(this.baseurl + '/records', newRecord, {headers, observe: 'response'});
   }
 }

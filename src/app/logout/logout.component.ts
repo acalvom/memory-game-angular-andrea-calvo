@@ -25,7 +25,6 @@ export class LogoutComponent implements OnInit {
       this.loggedUser = false;
       //console.log('No user logged in');
     }
-    //console.log(this.toDeleteToken);
   }
 
 }

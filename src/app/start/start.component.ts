@@ -7,16 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class StartComponent implements OnInit {
 
-  updateClock(): void {
-
-  }
-
   constructor() {
   }
 
   ngOnInit(): void {
-    // onload
-    // setInterval(this.updateClock, 1000);
   }
 
 }

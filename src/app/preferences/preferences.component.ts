@@ -15,9 +15,7 @@ export class PreferencesComponent implements OnInit {
   constructor(private router: Router, private preferences: PreferencesmanagerService) { }
 
   acceptPreferences(): void {
-    console.log(this.numberOfCards, this.timeLimit);
     this.preferences.setPreferences(this.numberOfCards, this.timeLimit);
-    console.log(this.preferences);
     this.router.navigate(['play']);
   }
 

@@ -40,8 +40,6 @@ export class SigninComponent implements OnInit {
         this.userStatusCode = error.status;
       }
       );
-    //console.log(this.userExists);
-    //console.log(this.userStatusCode);
   }
 
   addUser(): void {
@@ -56,19 +54,15 @@ export class SigninComponent implements OnInit {
         this.passwordStatusCode = 0;
         this.connection.addNewUser(newUser).subscribe(
           (res) => {
-            console.log('resultado status' + res.status)
             this.passwordStatusCode = res.status;
           },
           (error) => {
-            console.log(error.status);
             this.passwordStatusCode = error.status;
             this.newPassword = '';
             this.repeatPassword = '';
           }
         );
       }
-
-
   }
 
   ngOnInit(): void {
