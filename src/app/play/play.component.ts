@@ -27,6 +27,7 @@ export class PlayComponent implements OnInit {
   currentScore;
   remainingTime;
   gameStatus;
+  scoreStatusCode;
 
   /* User credentials */
   loadedUserToken: string | null = '';
@@ -76,7 +77,7 @@ export class PlayComponent implements OnInit {
         this.numberOfCards = preferencesArray[0];
         this.timeLimit = preferencesArray[1];
       }
-      //this.numberOfCards = 4; // For debugging
+      this.numberOfCards = 4; // For debugging
       //this.timeLimit = 10; // For debugging
     }
     this.remainingTime = this.timeLimit;
@@ -215,8 +216,10 @@ export class PlayComponent implements OnInit {
     this.recordrestService.postRecord(newRecord, token).subscribe(
       (res) => {
         console.log(res.status);
+        this.scoreStatusCode = res.status;
       },
       (error) => {
+        this.scoreStatusCode = error.status;
         console.log(error);
       }
     );
