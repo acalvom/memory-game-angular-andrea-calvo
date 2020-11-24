@@ -1,4 +1,14 @@
-# JuegoDeLasParejas
+# Memory Game
+
+
+
+#### Link to GitHub:
+
+https://github.com/acalvom/memory-game-angular-andrea-calvo.git
+#### Link to LinkedIn:
+
+https://www.linkedin.com/in/andrea-calvo-moreno-63a71b115/
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
