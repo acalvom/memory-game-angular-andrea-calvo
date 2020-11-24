@@ -23,4 +23,9 @@ export class RecordrestService {
     const headers = new HttpHeaders().set("Authorization", token) ;
     return this.http.post(this.baseurl + '/records', newRecord, {headers, observe: 'response'});
   }
+
+  deleteUserRecords(token: string){
+    const headers = new HttpHeaders().set("Authorization", token) ;
+    return this.http.delete(this.baseurl + '/records',{headers, observe: 'response'});
+  }
 }

@@ -46,7 +46,17 @@
         </tr>
         </tbody>
       </table>
-      <hr/>
+      <div class="col-md-10 offset-md-2">
+        <button id='btn_delete' type='button' value="Delete Records"
+                class="btn btn-primary"
+                (click)='deleteRecords()'>Delete Personal Records
+        </button>
+        <ng-container [ngSwitch]="recordStatusCode"  class="col-md-2 col-md-offset-2">
+          <p class="errorMsg" *ngSwitchCase="401" >Session has expired. Login again</p>
+          <p class="successMsg" *ngSwitchCase="204" >Records deleted successfully. Restart the page</p>
+          <p *ngSwitchDefault>  </p>
+        </ng-container>
+      </div>
     </div>
   </div>
 

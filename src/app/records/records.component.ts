@@ -13,9 +13,12 @@ export class RecordsComponent implements OnInit {
   /* User credentials */
   loadedUserToken: string | null = '';
   loggedUser: boolean = false;
+  token;
+  username;
 
   topRecords: records[] = [];
   userRecords: records[] = [];
+  recordStatusCode;
 
   constructor(private connection: RecordrestService,
               private usersrestService: UsersrestService) { }
@@ -30,19 +33,30 @@ export class RecordsComponent implements OnInit {
   }
 
   showUserRecords(){
-    let username: string = this.loadedUserToken.split(',')[0];
-    let token: string = this.loadedUserToken.split(',')[1];
-    this.connection.getUserRecords(username, token).subscribe(
+    this.connection.getUserRecords(this.username, this.token).subscribe(
       (res: records[]) => {
         this.userRecords = res;
       }
     );
   }
 
+  deleteRecords(){
+    this.connection.deleteUserRecords(this.token).subscribe(
+      (res) => {
+        this.recordStatusCode = res.status;
+      },
+      (error) => {
+        this.recordStatusCode = error.status;
+      });
+  }
+
   loadUser() {
     this.loadedUserToken = this.usersrestService.getUserToken();
     if (this.loadedUserToken != null){
       this.loggedUser = true;
+      this.username = this.loadedUserToken.split(',')[0];
+      this.token = this.loadedUserToken.split(',')[1];
+      console.log(this.token);
       this.showUserRecords();
     }
   }
